@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SAYONE STORIES</title>
+      {% load static %}
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/myfonts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/loginpage.css' %}">
+    <link rel="stylesheet" href="{% static 'css/heading2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/heading.css' %}">
+    <link href="sticky-footer-navbar.css" rel="stylesheet">
+    {% block addscript %}
+
+    {% endblock %}
+  {% block addcss %}
+
+     {% endblock %}
+
+
+<style>
+
+.mySlides {display:none;}
+
+</style>
+
+
+</head>
+<body style="background-color:#ebebeb;" class="cc">
+
+  <nav class="navbar navbar-expand-sm bg-light">
+
+               <!-- Brand/logo -->
+
+               <a class="navbar-brand" href="{% url 'user_home_page' %}">
+
+                  <img src="{% static 'images/sayone.png' %}" alt="Sayone" class="rounded-sm" >
+ 
+                </a>
+
+  <ul class="navbar-nav ml-auto">
+
+                 
+                   <li class="nav-item">
+                   <a class="nav-link lora" href="{% url 'add_story_page' %}" >Add Story</a>
+                </li>
+
+                 <li class="nav-item dropdown dropleft">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                Stories
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'show_events' %}">Events</a>
+                    <a class="dropdown-item" href="{% url 'show_blogs' %}">Blogs</a>
+                    <a class="dropdown-item" href="{% url 'show_gallery' %}">Image Gallery</a>
+                    <a class="dropdown-item" href="{% url 'top_authors' %}">Top Authors</a>
+                  </div>
+                </li>
+
+                <div class="dropdown dropleft">
+                    <a    data-toggle="dropdown" >
+                 <img class="rounded-circle" src="{{user.sayone_user.profile_pic.url}}" width="60px" height="60px" id="navbardrop">
+                    </a>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="{% url 'user_profile_page' %}">My profile</a>
+                      <a class="dropdown-item" href="{% url 'user_stories_page' %}">My stories</a>
+                      <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                    </div>
+                  </li>
+               </div>
+
+               <li class="nav-item">
+                  <a class="nav-link lora" href="{% url 'add_story_page' %}" ></a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link lora" href="{% url 'add_story_page' %}" ></a>
+               </li>
+             </nav>
+
+
+
+{% block content %}
+
+
+
+{% endblock %}
+
+
+
+{% block addjs %}
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+
+    <script src="{% static 'js/jquery-file-upload/vendor/jquery.ui.widget.js' %}"></script>
+  <script src="{% static 'js/jquery-file-upload/jquery.iframe-transport.js' %}"></script>
+  <script src="{% static 'js/jquery-file-upload/jquery.fileupload.js' %}"></script>
+
+  <script src="{% static 'js/basic-upload.js' %}"></script>
+
+  
+{% endblock %}
+
+<div class="footer">
+  <p class="pt-4">&copy;Sayone Technologies 2020</p>
+ </div>
+ 
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row pt-4">
+    <div class="col-3"></div>
+    <div class="col-6">
+        {% for story in stories %}
+        <div class="card mt-2">
+            <div class="card-body pb-3">
+                <table ><tr ><a href="{% url 'draft_detail_page' story.story_id%}">{{story.story_title}}</a></tr>
+                    <tr><td>Author</td>
+                        <td>{{story.story_author}}</td></tr>
+                    <tr><td>Created on</td><td>{{story.date_created}}</td></tr>
+                    <tr><td>Story Type</td>
+                    <td>
+                        {% if story.story_type == 0 %}
+                        <span class="badge badge-success">Event</span>
+                        {% elif story.story_type == 1 %}
+                        <span class="badge badge-danger">Blog</span>
+                        {% elif story.story_type == 2 %}
+                        <span class="badge badge-warning">Image Gallery</span>
+                        {% endif %}
+                    </td>
+
+                    </tr>
+                </table>
+            </div>
+</div>
+        {% endfor %}
+    </div>
+    <div class="col-3"></div>
+</div>
+
+{% endblock %}

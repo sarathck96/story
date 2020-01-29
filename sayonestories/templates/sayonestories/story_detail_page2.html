@@ -1,0 +1,134 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+
+
+{% block content %}
+
+
+<div class="container mb" >
+
+
+    <div class="row">
+        <div class="col-2 ">
+
+        </div>
+        <div class="col-8 pt-5">
+
+            <div class="card">
+                <div class="card-body heading2 bg-warning">{{ story.story_title}}</div>
+            </div>
+            <div class="card pt-4">
+                {% if blog %}
+                <img src="{{story.blog_story.blog_pic.url}}" width="100%" height="400px">
+                {% endif %}
+
+                {% if substory %}
+
+                <div class="w3-content w3-display-container">
+                    {% for item in substory %}
+                    <img class="mySlides" src="{{ item.file.url }}" style="width:100%" height="400px">
+                    {% endfor %}
+
+                    <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+                    <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+                </div>
+                {% endif %}
+
+            </div>
+            <div class="pt-2 text-right">
+                <h3 class="dancingscript">{{story.story_author}}</h3>
+                <h3 class="dancingscript">{{story.date_created}}</h3>
+
+
+            </div>
+
+            <div class="p-2 mt-2 crimson">
+                {{story.blog_story.blog_description}}
+            </div>
+
+            {% for comment in comments %}
+            <div class="cantarell py-2">
+                <p>{{ comment.comment }}</p>
+                <p class="text-right"> -{{ comment.user_commented.sayone_user.name}} {{comment.date_commented}}</p>
+            </div>
+            {% endfor %}
+
+           
+
+        </div>
+
+
+        <div class="col-2 my-auto">
+
+            <div>
+               
+                <img src="{% static 'images/love3.png' %}" width="50px" height="50px" id="like">
+                
+                <div><b>{{story.story_likes}}</b></div>
+            </div>
+            <br>
+
+
+        </div>
+
+
+
+    </div>
+
+
+    <script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  x[slideIndex-1].style.display = "block";
+}
+
+    </script>
+    <script>
+var like = "{% static 'images/love3.png' %}"
+var counter = {{ story.story_likes }}
+    $(document).ready(function(){
+  $("#like").click(function(){
+
+$.ajax({
+        url: "{% url 'like_story' story.story_id %}",
+
+        dataType: 'json',
+        success: function (data) {
+          if (data.is_valid == 'yes' ) {
+
+               counter++;
+               $('#counter').text(counter);
+              $("#like").attr("src",like);
+
+
+          }
+          else {
+          alert('you have already liked this pic');
+          }
+        }
+      });
+
+
+
+  });
+});
+
+    </script>
+
+</div>
+    {% endblock %}
+

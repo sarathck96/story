@@ -1,0 +1,71 @@
+{% extends 'base_layout2.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mb">
+    <div class="row">
+        <div class="col-md-2">
+
+        </div>
+
+        <div class="col-md-8">
+            Edit Story
+            <form method="POST" action="{% url 'edit_story' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+            <table>
+                <input type="hidden" name="id" value={{id}}>
+<tr>
+    <td>Story Title:</td>
+    <td><input type="text" name="title" value="{{title}}"></td>
+</tr>
+
+{% if blog %}
+<tr>
+    <td>
+        Story pic 
+    </td>
+    <td>
+        <img src="{{pic.url}}" width="100px" height="100px"> <input  type="file" name="newpic">
+    </td>
+</tr>
+
+<tr>
+    <td>
+        Description
+    </td>
+    <td>
+        <textarea name="description" rows="10" cols="50" >
+            {{description}}
+        </textarea>
+    </td>
+</tr>
+
+{% else %}
+
+{% for item in story.image_story.all %}
+<tr>
+    <td>
+        <img src="{{item.file.url}}" width="100px" height="100px">
+    </td>
+    
+</tr>
+{% endfor %}
+{% endif %}
+
+<tr>
+    <td>
+        <button type="submit" class="btn btn-warning">Save</button>
+    </td>
+</tr>
+            </table>
+</form>
+        </div>
+
+        <div class="col-md-2">
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

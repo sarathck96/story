@@ -1,0 +1,107 @@
+{% extends 'base_layout2.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="conatainer-fluid mb">
+       {% if messages %}
+       {% for message in messages %}
+<script>
+    alert('{{ message }}');
+</script>
+       {% endfor %}
+       {% endif %}
+
+
+   <div class="row pt-4">
+
+       <div class="col-3"></div>
+       <div class="col-6">
+
+           {% for story in stories %}
+           <div class="card mt-2">
+               <div class="card-body ">
+                   <table ><tr ><a href="{% url 'story_detail_page' story.story_id%}">{{story.story_title}}</a>
+    </tr>
+                       <tr><td>Author</td>
+                           <td>{{story.story_author}}</td></tr>
+                       <tr><td>Created on</td><td>{{story.date_created}}</td></tr>
+                       <tr><td>Story Type</td>
+                       <td>
+                           {% if story.story_type == 0 %}
+                           <span class="badge badge-success">Event</span>
+                           {% elif story.story_type == 1 %}
+                           <span class="badge badge-danger">Blog</span>
+                           {% elif story.story_type == 2 %}
+                           <span class="badge badge-warning">Image Gallery</span>
+                           {% endif %}
+                       </td>
+
+                       </tr>
+                       <tr><td><button onclick="deleteitem('{% url 'delete_story' story.story_id %}');" class="btn btn-danger btn-sm" id="myBtn" data-toggle="modal" data-target="#myModal">Delete</button> </td>
+                      <td><a class="btn btn-sm btn-info" href="{% url 'edit_story_page' story.story_id %}">Edit story</a></td></tr>
+                   </table>
+               </div>
+</div>
+           {% endfor %}
+       </div>
+       <div class="col-3">
+
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Story Delete</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+         Are you sure want to delete this story?
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+
+            <a onclick="confirmDelete(); clickAndDisable(this);" class="btn btn-danger ">Delete</a>
+        </div>
+
+      </div>
+    </div></div>
+   </div>
+<script>
+      var url = null;
+      var span = document.getElementsByClassName("close1")[0];
+      var modal = document.getElementById("myModal");
+      function deleteitem(itemurl){
+        modal = document.getElementById("myModal");
+        span = document.getElementsByClassName("close1")[0];
+        console.log(span);
+        callPopUp();
+        console.log("something");
+        url = itemurl;
+      }
+      function confirmDelete(){
+        console.log(url);
+        location.href = url;
+      }
+      function callPopUp() {
+        modal.style.display = "block";
+      }
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+    </script>
+
+
+</div>
+</div>
+{% endblock %}

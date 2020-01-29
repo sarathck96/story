@@ -1,0 +1,38 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+{% block content %}
+
+Title :{{ story.story_title }}
+Author :{{ story.story_author }}
+Date created: {{ story.date_created }}
+story status : draft
+
+please add {% if story.story_type == 0 %} Event details
+
+{% elif story.story_type == 1 %} Blog details
+
+{% else %} Image Gallery
+
+{% endif %}
+
+{% if sub_story == 'yes' %}
+<form method="POST" action="{% url 'publish_drafts' %}">
+    {% csrf_token %}
+   <input type="hidden" name="story_id" value="{{story.story_id}}" >
+    <input type="hidden" name="substory" value="yes">
+    <button type="submit">publish</button>
+</form>
+{% else %}
+<form method="POST" action="{% url 'publish_drafts' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+   <input type="hidden" name="story_id" value="{{story.story_id}}" >
+   <input type="hidden" name="story_type" value="{{story.story_type}}">
+    <input type="hidden" name="substory" value="no">
+
+   {{ form }}
+   <button type="submit" >publish</button>
+</form>
+
+{% endif %}
+{% endblock %}

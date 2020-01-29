@@ -1,0 +1,52 @@
+
+{% extends 'base_layout2.html' %}
+{% load static %}
+
+
+
+{% block content %}
+
+<div class="container mb">
+
+   <div class="row pt-4">
+     
+       <div class="col-md-12">
+           {% for story in stories %}
+          
+<div class="col-md-4" style="float:left;" >
+           <div class="card mt-2" >
+               <img class="card-img-top"  src="{{story.blog_story.blog_pic.url}}" width="100%" height="250px;">
+               <div class="card-body pb-3">
+                   <table ><tr ><a href="{% url 'story_detail_page' story.story_id%}">{{story.story_title}}</a></tr>
+                    <tr><td colspan="2">
+                        {{story.blog_story.blog_description|truncatewords:10 }}
+                    </td></tr>
+                       <tr><td>Author</td>
+                           <td>{{story.story_author}}</td></tr>
+                       <tr><td>Created on</td><td>{{story.date_created}}</td></tr>
+                       <tr><td>Story Type</td>
+                       <td>
+                           
+                           <span class="badge badge-success">Event</span>
+                        
+                    
+                       </td>
+
+                       </tr>
+                   </table>
+               </div>
+               
+</div>
+</div>
+
+           {% endfor %}
+       </div>
+       
+       
+    
+   </div>
+</div>
+
+
+
+{% endblock %}

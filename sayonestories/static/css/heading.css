@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Gelasio&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Crimson+Text:400,600&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Trocchi|Vesper+Libre:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Ibarra+Real+Nova&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Neuton:400,800&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Cantarell&display=swap');
+
+
+a {
+ font-family: 'Gelasio', serif;font-size:18px;color:black;
+}
+
+.hh {
+    font-size: 15px;
+}
+
+td { font-family: 'Crimson Text', serif;font-weight:600;font-size:18px;padding:5px;}
+
+.heading {font-family: 'Vesper Libre', serif;font-weight:700;font-size:20px; }
+
+.heading2 {font-family: 'Trocchi', serif;font-weight:400;font-size:30px;}
+
+.loginfield {font-family: 'Neuton', serif;font-weight:400;font-size:18px; }
+
+.content {font-family: 'Ibarra Real Nova', serif;font-weight:400;font-size:18px;}
+
+.robotomono {font-family: 'Roboto Mono', monospace;font-weight:400;font-size:15px;}
+
+ .crimson {font-family: 'Crimson Text', serif;font-weight:600;font-size:20px;text-align:justify;}
+
+ .roboto { font-family: 'Roboto', sans-serif;font-size: 15px;}
+
+ .quicksand {font-family: 'Quicksand', sans-serif;font-weight:400;font-size: 18px;}
+
+ .cantarell {font-family: 'Cantarell', sans-serif;font-size: medium;}
+
+ /* .footer_bottom {
+     background-color:aqua;position:relative;height:100px;margin-top:100px;clear:both;
+ } */
+
+
+
+ .footer {
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color:#000000;
+
+  text-align: center;
+  height:60px;
+  background-color:#f8f9fa;
+
+}
+
+.mb {
+margin-bottom :10%;
+}
+.mb2 {
+margin-bottom:15%;
+}
+.mb3 {
+margin-bottom:22%;
+}

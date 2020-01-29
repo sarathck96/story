@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Arvo:400,400i,700|Bitter:400,400i|Copse|Cutive|Lora:400,400i,700|Open+Sans:400,600,700|Roboto:400,400i,500,500i,700|Sanchez|Scope+One|Slabo+27px|Trocchi|Vesper+Libre:400,500,700&display=swap')
+
+.opensans {font-family: 'Open Sans', sans-serif;}
+.roboto {font-family: 'Roboto', sans-serif;font-weight:700;font-size:15px;}
+.scopeone {font-family: 'Scope One', serif;}
+.lora {font-family: 'Lora', serif;}
+.lorai {font-family:'Lora',serif;font-weight:400;font-style:italic;}
+.bitter {font-family: 'Bitter', serif;}
+.arvo {font-family: 'Arvo', serif;}
+.sanches {font-family: 'Sanchez', serif;}
+.copse {font-family: 'Copse', serif;}
+.cutive {font-family: 'Cutive', serif;}
+.trocchi {font-family: 'Trocchi', serif;}
+.slabo {font-family: 'Slabo 27px', serif;}
+.vesper {font-family: 'Vesper Libre', serif;}
