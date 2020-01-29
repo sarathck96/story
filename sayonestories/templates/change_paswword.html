@@ -1,0 +1,13 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Save changes</button>
+  </form>
+
+  {% endblock %}
+
+  

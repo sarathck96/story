@@ -37,6 +37,15 @@ urlpatterns = [
     path('topauthors',views.top_authors,name='top_authors'),
     path('editstorypage/<int:id>/',views.edit_story_page,name='edit_story_page'),
     path('editstory',views.edit_story,name='edit_story'),
+
+    path('change-password/', auth_views.PasswordChangeView.as_view()),
+   
+
+    path('topstories', views.top_stories_page, name='top_stories_page'),
+    
+    
+
+    
   
 
 

@@ -15,7 +15,9 @@ from .models import Story, Blog, Images, Sayoneuser, Like, Comments
 from django.http import JsonResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Count
-
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.views import PasswordChangeView
 
 # Create your views here.
 
@@ -469,3 +471,30 @@ def edit_story(request):
       return redirect('story_detail_page', id=story_id)
    else:
         return redirect('story_detail_page', id=story_id)
+
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('change_password')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'accounts/change_password.html', {
+        'form': form
+    })
+
+
+def top_stories_page(request):
+
+    top_events = Story.objects.filter(story_type=0).order_by('-story_likes')[:3]
+    top_blogs = Story.objects.filter(story_type=1).order_by('-story_likes')[:3]
+    top_gallery = Story.objects.filter(story_type=2).order_by('-story_likes')[:3]
+
+    context = {'events':top_events,'blogs':top_blogs,'gallery':top_gallery}
+    return render(request, 'sayonestories/top_stories_page.html',context )
