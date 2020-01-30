@@ -6,7 +6,7 @@
 
 {% block content %}
 
-<div class="container mb2">
+<div class="container mb3">
 
    
     <div class="row pt-4">
@@ -85,6 +85,36 @@
            {% endfor %}
 
         </div>
+
+        <div class="row mt-4">
+            <div class="col-md-3"></div>
+
+            <div class="col-md-6">
+        {% if stories.has_other_pages %}
+  <ul class="pagination">
+    {% if stories.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ stories.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled page-item"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in stories.paginator.page_range %}
+      {% if stories.number == i %}
+        <li class="active page-item"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if stories.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ stories.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled page-item"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+</div>
+<div class="col-md-3"></div>
+
+</div>
 </div>
 
 

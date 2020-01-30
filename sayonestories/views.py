@@ -94,12 +94,23 @@ def User_home_page(request):
 
     all_story_objects = Story.objects.all().order_by('-date_created').filter(story_status=1)
 
+    
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(all_story_objects, 3)
+    try:
+        users = paginator.page(page)
+    except PageNotAnInteger:
+        users = paginator.page(1)
+    except EmptyPage:
+        users = paginator.page(paginator.num_pages)
+
   
 
 
 
 
-    return render(request, 'sayonestories/UserHome.html', context={'img_url': pic_url, 'stories': all_story_objects})
+    return render(request, 'sayonestories/UserHome.html', context={'img_url': pic_url, 'stories': users})
 
 
 def add_story_page(request):
@@ -457,7 +468,13 @@ def edit_story(request):
    print('id',story_id)
    story_title = request.POST.get('title')
    story_description = request.POST.get('description')
-   story_pic = request.FILES.get('newpic')
+   
+   pic =''
+   if request.FILES.get('newpic'):
+       story_pic = request.FILES.get('newpic')
+       pic = 'yes'
+   else:
+       pic ='no'
 
    story_obj = Story.objects.filter(story_id=story_id).first()
    story_obj.story_title = story_title
@@ -466,7 +483,8 @@ def edit_story(request):
    if story_obj.story_type in [0,1]:
       blog_obj = Blog.objects.filter(story=story_obj).first()
       blog_obj.blog_description = story_description
-      blog_obj.blog_pic = story_pic
+      if pic =='yes':
+        blog_obj.blog_pic = story_pic
       blog_obj.save()
       return redirect('story_detail_page', id=story_id)
    else:
