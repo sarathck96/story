@@ -2,9 +2,9 @@
 {% load static %}
 
 {% block content %}
-<div class="container mb">
-<div class="row mt-2">
-    <h6>Top Events</h6>
+<div class="container mb2">
+<div class="row mt-4">
+    <h6 class="lora">Top Events</h6>
     <div class="col-md-12">
     {% for event in events %}
     <div class="col-md-4 rounded-sm " style="float:left;">
@@ -15,7 +15,7 @@
                         <table >
                             <tr>
                                 <div style="height:70px;">
-                                        <a href="{% url 'story_detail_page2' event.story_id%}">{{event.story_title}}</a>
+                                        <a href="{% url 'story_detail_page' event.story_id%}">{{event.story_title}}</a>
                                     </div>
                            </tr>
                             
@@ -45,8 +45,8 @@
 </div>
 </div>
 
-<div class="row mt-2">
-    <h6>Top Blogs</h6>
+<div class="row mt-4">
+    <h6 class="lora">Top Blogs</h6>
     <div class="col-md-12">
     {% for blog in blogs %}
     <div class="col-md-4" style="float:left;">
@@ -57,7 +57,7 @@
                           
 
                                     <tr>  <div style="height:70px;">
-                                        <a href="{% url 'story_detail_page2' blog.story_id%}">{{blog.story_title}}</a>
+                                        <a href="{% url 'story_detail_page' blog.story_id%}">{{blog.story_title}}</a>
                                     </div>
                                     </tr>
     
@@ -95,8 +95,8 @@
 </div>
 
 
-<div class="row mt-2">
-    <h4>Top Gallery</h6>
+<div class="row mt-4">
+    <h6 class="lora">Top Gallery</h6>
     <div class="col-md-12">
     {% for blog in gallery %}
     <div class="col-md-4" style="float:left;">
@@ -107,7 +107,7 @@
 
 
                                     <tr>  <div style="height:70px;">
-                                        <a href="{% url 'story_detail_page2' blog.story_id%}">{{blog.story_title}}</a>
+                                        <a href="{% url 'story_detail_page' blog.story_id%}">{{blog.story_title}}</a>
                                     </div>
                                     </tr>
 

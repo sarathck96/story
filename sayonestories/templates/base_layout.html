@@ -35,8 +35,8 @@
   <nav class="navbar navbar-expand-sm bg-light ">
 
                <!-- Brand/logo -->
-
-               <a class="navbar-brand" href="#">
+               <div class="collapse navbar-collapse" id="navbarSupportedContent">
+               <a class="navbar-brand" href="{% url 'home' %}">
 
                   <img src="{% static 'images/sayone.png' %}" alt="Sayone" class="rounded-sm" >
  
@@ -57,7 +57,7 @@
 
 
                </ul>
-
+              </div>
              </nav>
 
 
