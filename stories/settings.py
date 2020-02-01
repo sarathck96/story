@@ -40,7 +40,13 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
 
+
+    'allauth', # new
+    'allauth.account', # new
+    'allauth.socialaccount', # new
+    'allauth.socialaccount.providers.google',
 
 ]
 
@@ -134,4 +140,12 @@ EMAIL_HOST_PASSWORD = 'S@yone2020'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
 
+SITE_ID = 1
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False

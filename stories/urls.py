@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     path('',include('sayonestories.urls')),
     path('accounts/',include('django.contrib.auth.urls')),
+    path('account/', include('allauth.urls')),
 
 ]
 if settings.DEBUG:
