@@ -42,6 +42,17 @@ urlpatterns = [
    
 
     path('topstories', views.top_stories_page, name='top_stories_page'),
+     path('filters',views.filter, name='filter_results'),
+    path('changepass',views.change_password,name='change_password'),
+    path('updategalery/<int:story_id>/',views.updategallery, name='update_gallery'),
+    path('login',views.user_email_login, name='user_email_login'),
+
+    path('verifypage',views.verify_user_page, name='sendmail'),
+    path('verifyfinal', views.verify_final , name='verify_final'),
+      path('addreply',views.add_reply, name='add_reply'),
+       path('addfav/<int:story_id>/',views.add_to_fav,name='add_to_fav'),
+       path('myfavourites',views.my_favourites, name='favourites'),
+
     
     
 
