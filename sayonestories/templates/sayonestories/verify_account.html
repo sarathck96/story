@@ -1,0 +1,30 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-4"></div>
+
+        <div class="col-md-4">
+               {% if error %}
+
+        {{error}}
+        {% endif %}
+        <form method="POST" action="{% url 'verify_final' %}" >
+            {% csrf_token %}
+            Enter the verification we just sent you<input type="text" name="otp">
+            <input type="submit" >verify account</input>
+        </form>
+        </div>
+
+        <div class="col-md-4"></div>
+    </div>
+
+</div>
+
+{% endblock %}
