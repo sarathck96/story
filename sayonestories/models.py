@@ -65,5 +65,23 @@ class Comments(models.Model):
    date_commented = models.DateTimeField(auto_now_add=True)
 
 
+class StoryView(models.Model):
+    story = models.ForeignKey(Story,related_name='storyviews',on_delete=models.CASCADE)
+    session= models.CharField(max_length=100)
+    date_created = models.DateTimeField(auto_now_add=True)
 
+
+class Replies(models.Model):
+    reply = models.CharField(max_length=1000)
+    comment_replied = models.ForeignKey(Comments, related_name='reply_to_comment', on_delete=models.CASCADE)
+    user_replied = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_reply')
+    user_replied_to = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_replied_to')
+    date_replied = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = 'Replies'
+
+class Favourites(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='user_fav')
+    story_added = models.ForeignKey(Story,on_delete=models.CASCADE,related_name='story_fav')
 
