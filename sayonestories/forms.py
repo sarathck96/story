@@ -97,6 +97,37 @@ class EditProfileForm(UserChangeForm):
            
         )
 
-        
+ class EmailValidationOnForgotPassword(PasswordResetForm):
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if not User.objects.filter(email__iexact=email, is_active=True).exists():
+            msg = ("There is no user registered with the specified E-Mail address.")
+            self.add_error('email', msg)
+        return email
+
+
+class MultiUploadForm2(forms.ModelForm):
+
+    file = MultiFileField(min_num=1, max_num=4, max_file_size=1024 * 1024 * 5)
+
+    class Meta:
+        exclude = ('story','description')
+        model = Images
+    labels = {
+        'file':'*Images',
+
+        }
+
+class ReplyForm(forms.ModelForm):
+    class Meta:
+        model = Replies
+        fields = ('reply',)
+
+        widgets = {
+            'reply': forms.Textarea(attrs={'class': 'form-control','id':'reply-text','rows':3,'cols':15})
+
+        }
+       
 
      
