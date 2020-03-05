@@ -83,7 +83,7 @@ class AddCommentForm(forms.ModelForm):
        exclude = ('user_commented','story_commented',)
 
        widgets = {
-           'comment': forms.TextInput(attrs={'class':'form-control'})
+           'comment': forms.Textarea(attrs={'class':'form-control','id':'comm','cols':15,'rows':3})
 
        }
 
